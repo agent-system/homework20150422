@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Author: Yuki Furuta <furushchev@jsk.imi.i.u-tokyo.ac.jp>
+# Author: Yuki Furuta <soga@brain.imi.i.u-tokyo.ac.jp>
 
 # 1. import rospy to enable ROS feature of python
 import rospy
@@ -15,8 +15,7 @@ from geometry_msgs.msg import Twist # This imports geometry_msgs/Twist
 from cv_bridge import CvBridge
 
 import cv2 # this imports opencv python interface
-import tesseract
-
+import pytesseract
 
 cascade_path = "/opt/ros/hydro/share/OpenCV/haarcascades/haarcascade_frontalface_alt2.xml"
 
@@ -41,12 +40,6 @@ then publishes those positions as geometry_msgs/Twist message.
         self.face_pose_publisher = rospy.Publisher("twist", Twist)
         self.debug_image_publisher = rospy.Publisher("debug_image", Image)
 
-        self.api = tesseract.TessBaseAPI()
-        self.api.Init("/usr/share/tesseract-ocr","jpn",tesseract.OEM_DEFAULT)
-        #api.SetPageSegMode(tesseract.PSM_SINGLE_WORD)
-        self.api.SetPageSegMode(tesseract.PSM_AUTO)
-
-
     # 5. define callback function for image topic
     def image_callback(self, msg):
         img_size = (msg.width, msg.height)
@@ -56,18 +49,9 @@ then publishes those positions as geometry_msgs/Twist message.
 
         # 7. convert image to grey image
         img_grey = cv2.cvtColor(img_mat, cv2.cv.CV_BGR2GRAY)
-        # tesseract.SetCvImage(img_grey,self.api)
-        # text=self.api.GetUTF8Text()
-        # conf=self.api.MeanTextConf()
-#        detect_script = pytesseract.image_to_string(img_grey, lang='jpn')
-        
-        # 7. detect face in an image
-        face_rects = self.cascade.detectMultiScale(img_grey,
-                                                  scaleFactor=1.1,
-                                                  minNeighbors=1,
-                                                  minSize=(1,1))
 
-        # rospy.loginfo("%s" % text)
+        pytesseract.image_to_string(img_gray, lang='jpn')
+
 
         if len(face_rects) > 0:
             rect = face_rects[0] # use first rect
