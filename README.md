@@ -17,8 +17,11 @@ This homework is for understanding a concept of Robot Architecture, and ROS(Robo
 Before doing this homework, you have to setup catkin ROS workspace for executing homework.
 
 ```bash
-# install catkin tools
+# install catkin tools (except Ubuntu 14.04)
 $ sudo apt-get install python-catkin-tools python-rosdep ros-hydro-desktop-full
+# install catkin tools (Ubuntu 14.04)
+$ sudo apt-get install -y python-pip
+$ sudo pip install -U catkin
 # create directory for workspace
 $ mkdir -p $HOME/ros/hydro/src
 $ cd $HOME/ros/hydro

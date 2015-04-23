@@ -5,7 +5,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   turtlesim
-  uvc_camera
+  usb_cam
   cv_bridge
   roseus)
 

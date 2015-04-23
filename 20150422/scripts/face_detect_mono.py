@@ -16,7 +16,7 @@ from cv_bridge import CvBridge
 
 import cv2 # this imports opencv python interface
 
-
+# Since indigo, opencv is not released from ROS infrastructure. 
 cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt2.xml"
 
 class FaceDetectorMonoNode(object):
