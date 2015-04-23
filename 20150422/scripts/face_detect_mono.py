@@ -56,10 +56,10 @@ then publishes those positions as geometry_msgs/Twist message.
 
         # 7. convert image to grey image
         img_grey = cv2.cvtColor(img_mat, cv2.cv.CV_BGR2GRAY)
-        # tesseract.SetCvImage(img_grey,self.api)
-        # text=self.api.GetUTF8Text()
-        # conf=self.api.MeanTextConf()
-#        detect_script = pytesseract.image_to_string(img_grey, lang='jpn')
+        tesseract.SetCvImage(img_grey,self.api)
+        text=self.api.GetUTF8Text()
+        conf=self.api.MeanTextConf()
+        detect_script = pytesseract.image_to_string(img_grey, lang='jpn')
         
         # 7. detect face in an image
         face_rects = self.cascade.detectMultiScale(img_grey,
@@ -67,7 +67,7 @@ then publishes those positions as geometry_msgs/Twist message.
                                                   minNeighbors=1,
                                                   minSize=(1,1))
 
-        # rospy.loginfo("%s" % text)
+        rospy.loginfo("%s" % text)
         # pub_debug_img_msg = self.bridge.cv2_to_imgmsg(img_grey, encoding="mono8")
         # self.debug_image_publisher.publish(pub_debug_img_msg)
         
