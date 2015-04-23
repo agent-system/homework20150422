@@ -51,28 +51,7 @@ then publishes those positions as geometry_msgs/Twist message.
         img_grey = cv2.cvtColor(img_mat, cv2.cv.CV_BGR2GRAY)
 
         pytesseract.image_to_string(img_gray, lang='jpn')
-
-
-        if len(face_rects) > 0:
-            rect = face_rects[0] # use first rect
-            face_rect_origin = (rect[0], rect[1]) # (x,y)
-            face_rect_size = (rect[2] - rect[0], rect[3] - rect[1]) # (width, height)
-            face_rect_center = (face_rect_origin[0] + face_rect_size[0] * 0.5,
-                                face_rect_origin[1] + face_rect_size[1] * 0.5)
-
-            # 8. logging face position
-            rospy.loginfo("face detected at (x, y) = (%d, %d)" % face_rect_center)
-
-            # 9. compute center of face relative to center of camera image
-            #    Note that face_relative_center has value (-img_size/2 ~ +img_size/2)
-            img_center = (img_size[0] * 0.5, img_size[1] * 0.5)
-            face_relative_center = (face_rect_center[0] - img_center[0],
-                                    face_rect_center[1] - img_center[1])
-
-            # 10. make Twist message and set values
-            pub_msg = Twist()
-            pub_msg.linear.x  = face_relative_center[1] / img_center[1]
-            pub_msg.angular.z = face_relative_center[0] / img_center[0]
+        
 
             # 12. publish debug image
             color = (255, 0, 0)

@@ -18,7 +18,7 @@ import cv2 # this imports opencv python interface
 import tesseract
 
 
-cascade_path = "/opt/ros/hydro/share/OpenCV/haarcascades/haarcascade_frontalface_alt2.xml"
+cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt2.xml"
 
 class FaceDetectorMonoNode(object):
     """
@@ -68,7 +68,9 @@ then publishes those positions as geometry_msgs/Twist message.
                                                   minSize=(1,1))
 
         # rospy.loginfo("%s" % text)
-
+        # pub_debug_img_msg = self.bridge.cv2_to_imgmsg(img_grey, encoding="mono8")
+        # self.debug_image_publisher.publish(pub_debug_img_msg)
+        
         if len(face_rects) > 0:
             rect = face_rects[0] # use first rect
             face_rect_origin = (rect[0], rect[1]) # (x,y)
