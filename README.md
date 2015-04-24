@@ -20,8 +20,7 @@ Before doing this homework, you have to setup catkin ROS workspace for executing
 # install catkin tools (except Ubuntu 14.04)
 $ sudo apt-get install python-catkin-tools python-rosdep ros-hydro-desktop-full
 # install catkin tools (Ubuntu 14.04)
-$ sudo apt-get install -y python-pip
-$ sudo pip install -U catkin
+$ sudo pip install -U rosdep rosinstall_generator wstool rosinstall catkin_tools
 # create directory for workspace
 $ mkdir -p $HOME/ros/hydro/src
 $ cd $HOME/ros/hydro
