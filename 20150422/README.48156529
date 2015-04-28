@@ -1,0 +1,8 @@
+48-156529 Yuya Nagamatsu
+
+execute:
+terminal1 $ roscore
+terminal2 $ roslaunch homework20150422 image_processing_48156529.launch
+
+This is my awesome code to make the camera image monochrome, mainly described in scripts/image_processor_48156529.py.
+The monochrome image is re-encoded as redundant RGB data.
