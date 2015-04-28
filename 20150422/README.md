@@ -1,19 +1,9 @@
-# homework20150422
+# homework20150422 48156504 Akimichi Ichinose
+Using indigo (Ubuntu 14.04)
 
-1. execute `talker/listener` sample
+Run $roslaunch homework20150422 48156504.launch
 
-  - Open new terminal and execute command below:
-  ```bash
-# Terminal 1
-roscore
-```
-  - Open new terminal and execute command below
-  ```bash
-# Terminal 2
-rosrun roseus talker.l
-```
-  - Open new terminal and execute command below:
-  ```bash
-  # Terminal 3
-rosrun roseus listener.l
-```
+My own node (edge_detecter) is doing 3 things:
+   1.Subscribe sensor_msgs/Image message
+   2.Process image subscribed (detecting edge with Canny filter)
+   3.Publish processed image

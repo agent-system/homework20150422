@@ -5,7 +5,11 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   turtlesim
+  usb_cam
+  cv_bridge
   roseus)
+
+find_package(OpenCV REQUIRED)
 
 catkin_package(
 #  INCLUDE_DIRS include
