@@ -1,0 +1,2 @@
+I use a gaussian blur for the image of laptop camera.
+The node "homework_image_proc" publishes blurred image, the node "debug_image_viewer" subscribes this image.
