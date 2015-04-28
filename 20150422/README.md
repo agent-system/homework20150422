@@ -136,3 +136,11 @@ roslaunch homework20150422 face_detect.launch
       - original camera image
       - processed image
     - add `README` which describes your node
+
+
+
+
+------------------------------------------------------
+
+excute 
+       just launch my_detect
