@@ -142,5 +142,9 @@ roslaunch homework20150422 face_detect.launch
 
 ------------------------------------------------------
 
-excute 
-       just launch my_detect
+
+
+
+
+
+ launch my_detect
