@@ -77,7 +77,7 @@ then publishes those positions as geometry_msgs/Twist message.
             pub_msg.angular.z = face_relative_center[0] / img_center[0]
 
             # 12. publish debug image
-            color = (255, 0, 0)
+            color = (255, 255, 0)
             cv2.rectangle(img_mat, face_rect_origin,
                           (face_rect_origin[0] + face_rect_size[0], face_rect_origin[1] + face_rect_size[1]),
                           color, thickness=2)
