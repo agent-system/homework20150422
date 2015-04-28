@@ -1,0 +1,14 @@
+<launch>
+  <arg name="show_debug_image" default="true" />
+
+  <include file="$(find homework20150422)/launch/camera.launch" />
+
+  <node name="edge_detect" pkg="homework20150422" type="my_detect.py"
+	output="screen">
+    <remap from="image" to="camera/image_raw"/>
+
+    <remap from="edge_image" to="camera/edge_image" />
+  </node>
+
+</launch>
+
