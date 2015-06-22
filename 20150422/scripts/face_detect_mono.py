@@ -24,7 +24,7 @@ This class has feature to subscribe "image" and detect people face,
 then publishes those positions as geometry_msgs/Twist message.
 """
 
-    def __init__(self):
+    def __init__(self):#constructor
         # make instance of object for image processing
         try:
             self.bridge = CvBridge()
