@@ -62,6 +62,7 @@ rtmlaunch hrpsys_gazebo_tutorials samplerobot_hrpsys_bringup.launch
 
 roscd hrpsys_gazebo_tutorials
 git remote add furushchev https://github.com/furushchev/rtmros_tutorials.git
+git fetch furushchev
 git checkout –b samplerobot-with-kinect furushchev/samplerobot-with-kinect
 catkin bt
 
