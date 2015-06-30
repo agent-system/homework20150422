@@ -1,7 +1,7 @@
 # homework20150422
 
 1. execute `talker/listener` sample
-
+  
   **Goal:** Comprehend node, topic, publish/subscriber and command line tools for ROS
 
   - Open new terminal and execute command below:
@@ -136,7 +136,3 @@ roslaunch homework20150422 face_detect.launch
       - original camera image
       - processed image
     - add `README` which describes your node
-
-### scripts/mosaic.py
-pixelize camera image
-![pixelized image](images/mosaic_image.png)
