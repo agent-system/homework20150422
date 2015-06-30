@@ -62,7 +62,8 @@ rtmlaunch hrpsys_gazebo_tutorials samplerobot_hrpsys_bringup.launch
 
 roscd hrpsys_gazebo_tutorials
 git remote add furushchev https://github.com/furushchev/rtmros_tutorials.git
-git checkout –b samplerobot-with-kinect furushchev/samplerobot-with-kinect
+git fetch furushchev
+git checkout -b samplerobot-with-kinect furushchev/samplerobot-with-kinect
 catkin bt
 
 source ~/ros/hydro/devel/setup.bash
@@ -92,5 +93,21 @@ roseus samplerobot-interface.l
 
 ```
 
+## Tips
 
+- when executing `catkin bt`, error `collada_urdf_jsk_patch not found` occurs in indigo
 
+    please add `jsk_3rdparty` repository to your local and build again
+
+    ```bash
+roscd
+cd ../src
+wstool set jsk-ros-pkg/jsk_3rdparty --git https://github.com/jsk-ros-pkg/jsk_3rdparty.git
+wstool up jsk-ros-pkg/jsk_3rdparty
+cd jsk-ros-pkg/jsk_3rdparty/3rdparty/assimp_devel
+touch CATKIN_IGNORE # this is for speedup compiling
+cd ..
+catkin build collada_urdf_jsk_patch
+catkin build hrpsys_gazebo_tutorials
+source devel/setup.bash
+```
