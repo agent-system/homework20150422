@@ -18,6 +18,8 @@ import cv2 # this imports opencv python interface
 
 cascade_path = "/opt/ros/hydro/share/OpenCV/haarcascades/haarcascade_frontalface_alt2.xml"
 
+
+#define class
 class FaceDetectorMonoNode(object):
     """
 This class has feature to subscribe "image" and detect people face,
@@ -33,10 +35,14 @@ then publishes those positions as geometry_msgs/Twist message.
             rospy.logerr("Error: %s" % e)
 
         # 4. subscribe "image" topic whose message type is sensor_msgs/Image
-        self.image_subscriber = rospy.Subscriber("image", Image, self.image_callback)
+        # this node subscribes "image" topic which is of type Image, and if the message is subscribed image_callback will invoked. 
+        self.image_subscriber = rospy.Subscriber("image", Image, self.image_callback)#create subscriber object
+        
 
         # declare publishers
-        self.face_pose_publisher = rospy.Publisher("twist", Twist)
+        # this node is publishing to the "twist" topic using message type Twist.
+        self.face_pose_publisher = rospy.Publisher("twist", Twist)# create publisher objct
+        # this node is publishing to the "debug_image" topic using message type Image.
         self.debug_image_publisher = rospy.Publisher("debug_image", Image)
 
     # 5. define callback function for image topic
@@ -89,11 +95,13 @@ then publishes those positions as geometry_msgs/Twist message.
         else:
             rospy.loginfo("no face detected.")
 
-if __name__ == '__main__':
+
+#main function
+if __name__ == '__main__':#他のプログラムで読み込む(importする)のでないとき、__name__='__main__'となる。つまり、実行されるとif=true
     # 3. At first, we must set node name, and register to the master.
     # In this case, node name is face_detector_mono
-    rospy.init_node("face_detector_mono")
-    face_detector = FaceDetectorMonoNode()
+    rospy.init_node("face_detector_mono")#set node of this program
+    face_detector = FaceDetectorMonoNode()#make instance of the class made above
 
     # wait for message comming
     rospy.spin()

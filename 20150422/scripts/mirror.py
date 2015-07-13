@@ -16,9 +16,7 @@ from cv_bridge import CvBridge
 
 import cv2 # this imports opencv python interface
 
-cascade_path = "/opt/ros/hydro/share/OpenCV/haarcascades/haarcascade_frontalface_alt2.xml"
-
-class FaceDetectorMonoNode(object):
+class MIRROR(object):
     """
 This class has feature to subscribe "image" and detect people face,
 then publishes those positions as geometry_msgs/Twist message.
@@ -28,7 +26,6 @@ then publishes those positions as geometry_msgs/Twist message.
         # make instance of object for image processing
         try:
             self.bridge = CvBridge()
-            self.cascade = cv2.CascadeClassifier(cascade_path)
         except Exception as e:
             rospy.logerr("Error: %s" % e)
 
@@ -40,27 +37,21 @@ then publishes those positions as geometry_msgs/Twist message.
 
     # 5. define callback function for image topic
     def image_callback(self, msg):
-        img_size = (msg.width, msg.height)
-
         # 6. convert ROS sensor_msgs/Image to OpenCV format
         img_mat = self.bridge.imgmsg_to_cv2(msg)
 
         # 7. convert image to grey image
-        img_grey = cv2.cvtColor(img_mat, cv2.cv.CV_BGR2GRAY)
+        img_flip = cv2.flip(img_mat, 1)
 
         # 12. publish debug image
-        color = (255, 0, 0)
-        pub_debug_img_msg = self.bridge.cv2_to_imgmsg(img_grey, encoding="bgr8")
+        pub_debug_img_msg = self.bridge.cv2_to_imgmsg(img_flip, encoding="bgr8")
         self.debug_image_publisher.publish(pub_debug_img_msg)
-
-        else:
-            rospy.loginfo("no face detected.")
 
 if __name__ == '__main__':
     # 3. At first, we must set node name, and register to the master.
     # In this case, node name is face_detector_mono
-    rospy.init_node("face_detector_mono")
-    face_detector = FaceDetectorMonoNode()
+    rospy.init_node("monokuro_camera")
+    mirror = MIRROR()
 
     # wait for message comming
     rospy.spin()
