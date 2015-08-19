@@ -136,3 +136,16 @@ roslaunch homework20150422 face_detect.launch
       - original camera image
       - processed image
     - add `README` which describes your node
+
+
+5.My Node(Ohara)
+### scripts/face_hide.py
+detect eye and hide eye
+![](images/agentsystem_ohara/png)
+
+#### Subscribing Topic
+* `image` (`sensor_msgs/Image`)
+  input image
+#### Publishing Topic
+* `debug_image` (`sendor_msgs/Image`)
+  processed image
