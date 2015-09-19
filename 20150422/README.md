@@ -136,3 +136,10 @@ roslaunch homework20150422 face_detect.launch
       - original camera image
       - processed image
     - add `README` which describes your node
+
+
+### How to describes face_detect_copy node
+
+```sh
+$ roslaunch homework20150422 copy.launch
+```
