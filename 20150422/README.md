@@ -136,3 +136,13 @@ roslaunch homework20150422 face_detect.launch
       - original camera image
       - processed image
     - add `README` which describes your node
+
+hoge.launch
+
+input sensor_msgs::image
+
+output sensor_msgs::PointCloud2
+
+take width and height of image, and publish pointcloud2 which depth is directed.
+
+

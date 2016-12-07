@@ -1,0 +1,25 @@
+<launch>
+  <arg name="camera_image" default="/image" />
+  <arg name="camera_info" default="/info" />
+  <arg name="camera_points2" default="/points2" />
+  <arg name="launch_view" default="false" />
+
+  <node pkg="usb_cam" type="usb_cam_node" name="camera">
+    <!-- rosrun usb_cam usb_cam_node _video_device:="/dev/video1" -->
+    <!-- <remap from="~video_device" to="/dev/video0" /> -->
+  </node>
+  <node pkg="mycamera" type="pub_pseudo_organized_image_points2" name="pub_pseudo_points2" output="screen">
+    <remap from="image" to="/camera/image_raw" />
+    <remap from="output" to="pub_points/output" />
+  </node>
+  <node pkg="topic_tools" type="relay" name="camera_image"
+        args="/camera/image_raw $(arg camera_image)" />
+  <node pkg="topic_tools" type="relay" name="camera_info"
+        args="/camera/camera_info $(arg camera_info)" />
+  <node pkg="topic_tools" type="relay" name="camera_points2"
+        args="pub_points/output $(arg camera_points2)" />
+
+  <node pkg="image_view" type="image_view" name="image_view" if="$(arg launch_view)">
+    <remap from="image" to="$(arg camera_image)" />
+  </node>
+</launch>
