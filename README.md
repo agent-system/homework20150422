@@ -89,7 +89,7 @@ rtmlaunch hrpsys_gazebo_tutorials samplerobot_hrpsys_bringup.launch
 rosrun rviz rviz
 # add RobotModel, PointCloud2 and Camera on rviz menu
 # choose /xtion/depth/points/ at Topic of PointCloud2
-# choose /xtion/depth/merge_raw at Image Topic of Camera
+# choose /xtion/depth/image_raw at Image Topic of Camera
 
 # terminal 4
 roscd hrpsys_ros_bridge_tutorials/euslisp
@@ -101,6 +101,7 @@ roseus samplerobot-interface.l
 (send *ri* :angle-vector (send *sr* :reset-pose) 4000)
 (send *ri* :start-auto-balancer)
 (send *ri* :start-st)
+(send *ri* :calibrate-inertia-sensor)
 (send *ri* :go-pos -0.5 0 0) ;; x y theta [m]
 
 ```
