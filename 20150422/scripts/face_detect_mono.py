@@ -16,7 +16,8 @@ from cv_bridge import CvBridge
 
 import cv2 # this imports opencv python interface
 
-cascade_path = "/opt/ros/hydro/share/OpenCV/haarcascades/haarcascade_frontalface_alt2.xml"
+# Since indigo, opencv is not released from ROS infrastructure. 
+cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt2.xml"
 
 class FaceDetectorMonoNode(object):
     """
@@ -39,6 +40,8 @@ then publishes those positions as geometry_msgs/Twist message.
         self.face_pose_publisher = rospy.Publisher("twist", Twist)
         self.debug_image_publisher = rospy.Publisher("debug_image", Image)
 
+
+
     # 5. define callback function for image topic
     def image_callback(self, msg):
         img_size = (msg.width, msg.height)
@@ -48,13 +51,15 @@ then publishes those positions as geometry_msgs/Twist message.
 
         # 7. convert image to grey image
         img_grey = cv2.cvtColor(img_mat, cv2.cv.CV_BGR2GRAY)
-
+        
         # 7. detect face in an image
         face_rects = self.cascade.detectMultiScale(img_grey,
                                                   scaleFactor=1.1,
                                                   minNeighbors=1,
                                                   minSize=(1,1))
 
+        rospy.loginfo("%s" % text)
+        
         if len(face_rects) > 0:
             rect = face_rects[0] # use first rect
             face_rect_origin = (rect[0], rect[1]) # (x,y)
