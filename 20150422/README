@@ -1,0 +1,19 @@
+README
+
+ID:48156315	Name:Yusuke Tsukamoto
+
+Description of my node:
+	name:
+		/canny_edge_detector
+	function:
+		This node works as follows:
+		1. subscribe sensor_msgs/Image message
+		2. find edges of subscribed image with Canny's method
+		3. publish processed image
+
+I made following two files:
+	1. launch/myImgProc.launch
+		launch file that shows the original camera image and processed image.
+	2. script/myProc.py
+		python file I made to carry out above processes.
+
